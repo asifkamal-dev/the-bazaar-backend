@@ -1,0 +1,3 @@
+CREATE DATABASE bazaar;
+CREATE USER bazaaruser WITH PASSWORD 'bazaar';
+GRANT ALL PRIVILEGES ON DATABASE bazaar to bazaaruser;
