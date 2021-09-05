@@ -40,7 +40,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class OrderItem(models.Model) :
+class OrderStaging(models.Model) :
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -50,9 +50,9 @@ class OrderItem(models.Model) :
     def __str__(self):
         return f"{self.quantity} of {self.product.name}"
 
-class Order(models.Model) :
+class SalesOrder(models.Model) :
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    items = models.ManyToManyField(OrderItem)
+    items = models.ManyToManyField(OrderStaging)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
