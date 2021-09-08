@@ -1,18 +1,22 @@
-from django.db.models import query
+from django.contrib.auth.models import User
 from rest_framework import serializers
-# from django.contrib.auth.models import User
 from .models import Category, Product, SalesOrder, Basket
-from bazaar import models
+
+
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
     category = serializers.HyperlinkedIdentityField(
         view_name='bazaar:category_detail',
         read_only=True
     )
-    
+    created_by = serializers.PrimaryKeyRelatedField(
+        queryset = User.objects.all(),
+    )
+
+
     class Meta:
         model = Product
-        fields = ('id','name','description','price','in_stock','category',)
+        fields = ('id','name','description','created_by','price','in_stock','category',)
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
     
@@ -35,9 +39,11 @@ class SalesOrderSerializer(serializers.HyperlinkedModelSerializer):
         queryset = Basket.objects.all(),
         many=True
     )
-    
+    user = serializers.PrimaryKeyRelatedField(
+        queryset = User.objects.all(),
+    )
 
     class Meta:
         model = SalesOrder
-        fields = ('items','start_date','ordered_date','ordered',)
-        # fields = ('start_date','ordered_date','ordered',)
+        fields = ('user','items','start_date','ordered_date','ordered',)
+

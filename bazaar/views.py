@@ -1,8 +1,8 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
-from rest_framework import generics
+from rest_framework import generics, viewsets
 from .models import Category, Product, Basket, SalesOrder
 from .serializers import ProductSerializer, CategorySerializer, BasketSerializer, SalesOrderSerializer
-# Create your views here.
 
 # Category
 class CategoryList(generics.ListCreateAPIView):
