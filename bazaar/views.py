@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
 from .models import Category, Product, Basket, SalesOrder
-from .serializers import ProductSerializer, CategorySerializer
+from .serializers import ProductSerializer, CategorySerializer, BasketSerializer
 # Create your views here.
 
 # Category
@@ -22,14 +22,14 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 
-# # Basket/Staging
-# class BasketList(generics.ListCreateAPIView):
-#     queryset = Basket.objects.all()
-#     serializer_class = BasketSerializer
+# Basket/Staging
+class BasketList(generics.ListCreateAPIView):
+    queryset = Basket.objects.all()
+    serializer_class = BasketSerializer
 
-# class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
-#     queryset = Basket.objects.all()
-#     serializer_class = BasketSerializer
+class BasketDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Basket.objects.all()
+    serializer_class = BasketSerializer
 
 # # SalesOrder
 # class SalesOrderList(generics.ListCreateAPIView):
