@@ -1,4 +1,4 @@
-from django.db.models import fields
+from django.db.models import query
 from rest_framework import serializers
 # from django.contrib.auth.models import User
 from .models import Category, Product, SalesOrder, Basket
@@ -29,3 +29,15 @@ class BasketSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Basket
         fields = ('ordered','product','quantity',)
+
+class SalesOrderSerializer(serializers.HyperlinkedModelSerializer):
+    items = serializers.PrimaryKeyRelatedField(
+        queryset = Basket.objects.all(),
+        many=True
+    )
+    
+
+    class Meta:
+        model = SalesOrder
+        fields = ('items','start_date','ordered_date','ordered',)
+        # fields = ('start_date','ordered_date','ordered',)
