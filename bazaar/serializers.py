@@ -5,7 +5,7 @@ from .models import Category, Product, SalesOrder, Basket
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    category = serializers.HyperlinkedIdentityField(
+    category = serializers.HyperlinkedRelatedField(
         view_name='bazaar:category_detail',
         read_only=True
     )
@@ -19,10 +19,15 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('id','name','description','created_by','price','in_stock','category',)
 
 class CategorySerializer(serializers.HyperlinkedModelSerializer):
-    
+    products = serializers.HyperlinkedRelatedField(
+        view_name='bazaar:product_detail',
+        many=True,
+        read_only=True
+    )
+
     class Meta:
         model = Category
-        fields = ('id','name',)
+        fields = ('id','name','products')
     
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.HyperlinkedRelatedField(
