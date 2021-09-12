@@ -11,11 +11,11 @@ class Category(models.Model):
 
 class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.CASCADE,related_name='products',)
-    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_creator',)
+    created_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='product_creator', default=1)
     name = models.CharField(max_length=255)
     description = models.TextField(blank=True)
     image = models.TextField(default='https://thednetworks.com/wp-content/uploads/2012/01/picture_not_available_400-300.png')
-    price = models.DecimalField(max_digits=4, decimal_places=2)
+    price = models.DecimalField(max_digits=6, decimal_places=2)
     in_stock = models.BooleanField(default=True)
     is_active = models.BooleanField(default=True)
     created = models.DateTimeField(auto_now_add=True)

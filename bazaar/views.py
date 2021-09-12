@@ -4,15 +4,6 @@ from rest_framework import generics, viewsets
 from .models import Category, Product, Basket, SalesOrder
 from .serializers import ProductSerializer, CategorySerializer, BasketSerializer, SalesOrderSerializer
 
-# Category
-class CategoryList(generics.ListCreateAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
-class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Category.objects.all()
-    serializer_class = CategorySerializer
-
 # Product
 class ProductList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
@@ -21,6 +12,15 @@ class ProductList(generics.ListCreateAPIView):
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+# Category
+class CategoryList(generics.ListCreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
+
+class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
 
 # Basket/Staging
 class BasketList(generics.ListCreateAPIView):
