@@ -18,10 +18,11 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id','category','created_by','name','description','price','in_stock',)
+        fields = ('id','category','created_by','name','description', 'image','price','in_stock',)
 
-class CategorySerializer(serializers.HyperlinkedModelSerializer):
+class CategorySerializer(serializers.ModelSerializer):
     products = serializers.HyperlinkedRelatedField(
+        # queryset = Product.objects.all()
         view_name='bazaar:product_detail',
         many=True,
         read_only=True
@@ -29,7 +30,7 @@ class CategorySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id','name','products')
+        fields = ('id','name','description','products')
     
 class BasketSerializer(serializers.HyperlinkedModelSerializer):
     product = serializers.HyperlinkedRelatedField(
