@@ -1,7 +1,8 @@
+notes/
 models.md
 Tasks-Notes.md
 seed_data.py
-
+Tasks-Notes.md
 # outside suggested gitignore
 # Django #
 *.log
