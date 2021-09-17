@@ -42,12 +42,16 @@ INSTALLED_APPS = [
     'django_extensions',
     'rest_framework',
     'corsheaders',
+    'users',
 ]
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.AllowAny',
-    ]
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
 
 # REST_FRAMEWORK = {
@@ -66,6 +70,10 @@ REST_FRAMEWORK = {
 # # ]
 
 CORS_ALLOW_ALL_ORIGINS = True
+
+# CUSTOM USER MODEL
+
+AUTH_USER_MODEL = 'users.NewUser'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

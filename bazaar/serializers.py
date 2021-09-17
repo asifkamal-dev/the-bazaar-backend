@@ -1,3 +1,5 @@
+# from django.contrib.auth.models import User
+from django.conf import settings
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from .models import Category, Product, SalesOrder, Basket
@@ -12,7 +14,8 @@ class ProductSerializer(serializers.ModelSerializer):
     )
 
     created_by = serializers.PrimaryKeyRelatedField(
-        queryset = User.objects.all(),
+        # queryset = User.objects.all(),
+        queryset = settings.AUTH_USER_MODEL,
     )
 
 
@@ -48,7 +51,8 @@ class SalesOrderSerializer(serializers.HyperlinkedModelSerializer):
         many=True
     )
     user = serializers.PrimaryKeyRelatedField(
-        queryset = User.objects.all(),
+        # queryset = User.objects.all(),
+        queryset = settings.AUTH_USER_MODEL
     )
 
     class Meta:

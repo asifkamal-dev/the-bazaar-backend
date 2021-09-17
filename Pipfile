@@ -12,6 +12,7 @@ django-extensions = "*"
 whitenoise = "*"
 dj-database-url = "*"
 gunicorn = "*"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 
